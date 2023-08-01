@@ -329,5 +329,84 @@ Ordered from least to most normalized:
 - Domain-key Normal Form (DKNF)
 - Sixth normal form (6NF)
 
+### 1NF Rules
+- Each record must be unique - no duplicate rows.
+- Each cell must hold one value.
+
+### 2NF Rules
+- Must satisfy 1NF AND If primary key is one column then automatically satisfies 2NF
+- If there is a composite primary key then each non-key column must be dependent on all the keys.
+
+### 3NF Rules
+- Satisfies 2NF
+- Doesn't allow transitive dependencies. This means that non-primary key columns can't depend on other non-primary key columns.
+
+A database that isn't normalized enough is prone to three types of anomaly errors: update, insertion, and deletion. An update anomaly is a data inconsistency caused by data redundancy when updating. An insertion anomaly is when you're unable to add a new record due to missing attributes. The dependency between columns in the same table unintentionally restricts what can be inserted into the table. Deletion anomaly happens when you delete a record and unintentionally delete other data.
+
+## Database Views
+
+Virtual table that is not part of the physical schema
+- Query, not data, is stored in memory
+- Data is aggregated from data in tables
+- Can be queried like a regular database table
+- No need to retype common queries or alter schemas
+
+SYNTAX
+
+```sql
+CREATE VIEW view_name AS
+SELECT col1, col2
+FROM table_name
+WHERE condition;
+```
+
+You can query it as you would a normal table. It's important to keep track of the views in your database. To get all the views in your database, you can run a query on the INFORMATION_SCHEMA.views table. Note that this command is specific to PostgreSQL.
+
+```sql
+--- include system views
+SELECT * FROM INFORMATION_SCHEMA.views;
+
+--- exclude system views
+SELECT * FROM information_schema.views
+WHERE table_schema NOT IN ('pg_catalog','information_schema');
+```
+
+### Benefits of views
+- Doesn't take up storage
+- A form of access control. Hide sensitive columns and restrict what user can see
+- Masks complexity of queries. Useful for highly normalized schema
+
+### Granting and revoking access to a view
+
+```sql
+GRANT privilege(s) or REVOKE privilege(s)
+ON object
+TO role or FROM role
+```
+
+- Privileges: SELECT , INSERT , UPDATE , DELETE , etc
+- Objects: table, view, schema, etc
+- Roles: a database user or a group of database users
+
+The update privilege on an object called ratings is being granted to public. PUBLIC is a SQL term that encompasses all users. All users can now use the UPDATE command on the ratings object.
+
+```sql
+GRANT UPDATE ON ratings TO PUBLIC;
+```
+
+The user db_user will no longer be able to INSERT on the object films.
+
+```sql
+REVOKE INSERT ON films FROM db_user;
+````
+
+### Updating a view
+
+Not all views are updatable. However a view can be updated if:
+
+- View is made up of one table
+- Doesn't use a window or aggregate function
+
+`UPDATE films SET kind = 'Dramatic' WHERE kind = 'Drama';`
 
   </details>
