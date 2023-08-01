@@ -200,4 +200,134 @@ ON DELETE...
 Altering a key constraint doesn't work with ALTER COLUMN. Instead, you have to DROP the key constraint and then ADD a new one with a different ON DELETE behavior.
 For deleting constraints, though, you need to know their name. This information is also stored in information_schema.
 
+## DATABASE DESIGN
+
+### How should we organise and manage data?
+
+1. Schemas - How should my data be logically organised?
+2. Normalization - should my data have minimal dependency and redundancy?
+3. Views - What joins will be done most often?
+4. Access control - should all users of the data have the same level of access?
+5. DBMS - how do I pick between all the SQL and NoSQL options?
+
+### Approaches to processing data
+
+They help define the way data is going to flow, be structured and stored.
+
+- OLTP - Online Transaction Processing
+- OLAP - Online Analytical Processing
+
+| |OLTP Tasks|OLAP Tasks|
+|----|----|----|
+|*Purpose*|Support daily transactions|report and analyse data|
+|*Design*|application-oriented|subject-oriented|
+|*Data*|up to date, operational|consolidated, historical|
+|*Size*|snapshot, gigabytes|archive, terabytes|
+|*Queries*|simple transactions and frequent updates|complex, aggregate queries & limited updates|
+|*Users*|thousands|hundreds|
+| |**Example**| |
+| |Find the price of a book|Calculate books with the best profit margin|
+| |Update latest customer transaction|Find most loyal customers|
+| |Keep track of employee hours|Decide employee of the month|
+| |Focus on supporting day to day operations|Focus on business decision making|
+
+![image](https://github.com/Irene-arch/YouTube-Projects-Datasets/assets/56026296/04693a87-9bcb-4eff-b704-612b4cf8aeb6)
+
+OLAP and OLTP systems work together; in fact, they need each other. OLTP data is usually stored in an operational database that is pulled and cleaned to create an OLAP data warehouse. Without transactional data, no analyses can be done in the first place. Analyses from OLAP systems are used to inform business practices and day-to-day activity, thereby influencing the OLTP databases.
+
+### Storing Data
+
+1. Structured data - 
+Follows a schema
+Defined data types & relationships
+_e.g., SQL, tables in a relational database _
+
+2. Unstructured data - 
+Schemaless
+Makes up most of data in the world
+e.g., photos, chat logs, MP3
+
+3. Semi-structured data - 
+Does not follow larger schema
+Self-describing structure
+e.g., NoSQL, XML, JSON
+
+### Data warehouses
+
+Optimized for read-only analytics. They combine data from multiple sources and use massively parallel processing for faster queries. In their database design, they typically use dimensional modeling and a denormalized schema. 
+- Optimized for analytics - OLAP
+- Organized for reading/aggregating data
+- Usually read-only
+- Contains data from multiple sources
+- Massively Parallel Processing (MPP)
+- Typically uses a denormalized schema and dimensional modeling
+
+### Data marts
+- Subset of data warehouses
+- Dedicated to a specific topic
+
+### Data lakes
+- Store all types of data at a lower cost: e.g., raw, operational databases, IoT device logs, real-time, relational and non-relational
+- Retains all data and can take up petabytes
+- Schema-on-read as opposed to schema-on-write
+- Need to catalog data otherwise becomes a data swamp
+- Run big data analytics using services such as Apache Spark and Hadoop
+- Useful for deep learning and data discovery because activities require so much data
+
+## Database Design
+
+- Determines how data is logically stored. How is data going to be read and updated?
+- Uses database models: high-level specifications for database structure. Most popular: relational model. Some other options: NoSQL models, object-oriented model, network model
+- Uses schemas: blueprint of the database. Defines tables, fields, relationships, indexes, and views. When inserting data in relational databases, schemas must be respected
+
+The first step to database design is data modeling. This is the abstract design phase, where we define a data model for the data to be stored. There are three levels to a data model: 
+1. A conceptual data model describes what the database contains, such as its entities, relationships, and attributes. Tools: data structure diagrams, e.g., entity-relational diagrams and UML diagrams.
+2. A logical data model decides how these entities and relationships map to tables. Tools: database models and schemas, e.g., relational model and star schema.
+3. A physical data model looks at how data will be physically stored at the lowest level of abstraction. Tools: partitions, CPUs, indexes, backup systems and tablespaces.
+
+These three levels of a data model ensure consistency and provide a plan for implementation and use.
+
+### Dimensional Modelling
+
+Dimensional modeling is an adaptation of the relational model specifically for data warehouses. It's optimized for OLAP type of queries that aim to analyze rather than update. To do this, it uses the star schema. Tends to be easy to interpret and extend.
+
+**Elements**
+
+Dimensional models are made up of two types of tables: fact and dimension tables. What the fact table holds is decided by the business use-case. It contains records of a key metric, and this metric changes often. Fact tables also hold foreign keys to dimension tables. Dimension tables hold descriptions of specific attributes and these do not change as often. 
+
+Fact tables
+- Decided by business use-case
+- Holds records of a metric
+- Changes regularly
+- Connects to dimensions via foreign keys
+
+Dimension tables
+- Holds descriptions of attributes
+- Does not change as often
+
+### Star Schema
+
+The star schema is the simplest form of the dimensional model. Some use the terms "star schema" and "dimensional model" interchangeably. The star schema is made up of two tables: fact and dimension tables. Fact tables hold records of metrics that are described further by dimension tables. The snowflake schema is an extension of the star schema. The star schema extends one dimension, while the snowflake schema extends over more than one dimension. This is because the dimension tables are normalized.
+
+### Normalization
+
+Normalization is a technique that divides tables into smaller tables and connects them via relationships. The goal is to reduce redundancy and increase data integrity. The basic idea is to identify repeating groups of data and create new tables for them. Normalization ensures better data integrity
+1. Enforces data consistency - Must respect naming conventions because of referential integrity, e.g.,'California', not 'CA' or'california'
+2. Safer updating, removing, and inserting. Less data redundancy = less records to alter
+3. Easier to redesign by extending. Smaller tables are easier to extend than larger tables
+
+### Normal forms (NF)
+Ordered from least to most normalized:
+- First normal form (1NF)
+- Second normal form (2NF)
+- Third normal form (3NF)
+- Elementary key normal form (EKNF)
+- Boyce-Codd normal form (BCNF)
+- Fourth normal form (4NF)
+- Essential tuple normal form (ETNF)
+- Fifth normal form (5NF)
+- Domain-key Normal Form (DKNF)
+- Sixth normal form (6NF)
+
+
   </details>
