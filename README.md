@@ -409,4 +409,19 @@ Not all views are updatable. However a view can be updated if:
 
 `UPDATE films SET kind = 'Dramatic' WHERE kind = 'Drama';`
 
+Generally, avoid modifying data through views. It's usually a good idea to use views for read-only purposes only.
+
+Dropping a view is straightforward with the DROP command. There are two useful parameters to know about: CASCADE and RESTRICT. Sometimes there are SQL objects that depend on views. For example, it's not unusual for views to build off of other views in larger databases. The RESTRICT parameter is the default and returns an error when you try to drop a view that other objects depend on. The CASCADE parameter will drop the view and any object that depends on that view.
+
+`DROP VIEW view_name [ CASCADE | RESTRICT ];`
+
+### Redefining a view
+
+Say you want to change the query a view is defined by. To do this, you can use the CREATE OR REPLACE command. If a view_name exists, it is replaced by the new_query specified. However, there are limitations to this. The new query must generate the same column names, column order, and column data types as the existing query. The column output may be different, as long as those conditions are met. New columns may be added at the end. If this criteria can't be met, the solution is to drop the existing view and create a new one.
+
+`CREATE OR REPLACE VIEW view_name AS new_query`
+
+### [Altering a view](https://www.postgresql.org/docs/9.2/sql-alterview.html)
+
+The auxiliary properties of a view can be altered. This includes changing the name, owner, and schema of a view.
   </details>
