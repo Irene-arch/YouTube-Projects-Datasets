@@ -424,4 +424,26 @@ Say you want to change the query a view is defined by. To do this, you can use t
 ### [Altering a view](https://www.postgresql.org/docs/9.2/sql-alterview.html)
 
 The auxiliary properties of a view can be altered. This includes changing the name, owner, and schema of a view.
+
+### Materialised Views
+
+There are 2 types of views: non materialised(normal virtual views) and materialised views(physically materialised).
+- Stores the query results not the query. These query results are stored on disk. This means the query becomes precomputed via the view. When you query a materialized view, it accesses the stored query results on the disk, rather than running the query like a non-materialized view and creating a virtual table. Materialized views are refreshed or rematerialized when prompted/scheduled. By refreshed or rematerialized, I mean that the query is run and the stored query results are updated.
+- Materialized views are great if you have queries with long execution time. The caveat is the data is only as up-to-date as the last time the view was refreshed. So, you shouldn't use materialized views on data that is being updated often, because then analyses will be run too often on out-of-date data. Materialized views are particularly useful in data warehouses.
+- Data warehouses are typically used for OLAP, meaning more for analysis than writing to data.
+
+**When to use materialized views**
+
+- Long running queries
+- Underlying query results don't change often
+- Data warehouses because OLAP is not write-intensive. Save on computational cost of frequent queries
+
+```sql
+CREATE MATERIALIZED VIEW my_mv AS SELECT * FROM existing_table;
+
+REFRESH MATERIALIZED VIEW my_mv;
+```
+
+Unlike non-materialized views, you need to manage when you refresh materialized views when you have dependencies.
+
   </details>
