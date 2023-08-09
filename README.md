@@ -446,4 +446,37 @@ REFRESH MATERIALIZED VIEW my_mv;
 
 Unlike non-materialized views, you need to manage when you refresh materialized views when you have dependencies.
 
+## DATABASE ROLES & ACCESS CONTROL
+
+Roles are used to manage database access permissions. A role is an entity that can function as a user and/or a group
+
+- Empty role - `CREATE ROLE data_analyst;`
+
+- Roles with some attributes set - `CREATE ROLE intern WITH PASSWORD 'PasswordForIntern' VALID UNTIL '2020-01-01';`
+
+`CREATE ROLE admin CREATEDB;`
+
+`ALTER ROLE admin CREATEROLE;`
+
+The available privileges in PostgreSQL are: SELECT , INSERT , UPDATE , DELETE , TRUNCATE , REFERENCES , TRIGGER , CREATE , CONNECT ,TEMPORARY , EXECUTE , and USAGE
+
+Add a user role to a group role - `GRANT data_analyst TO alex;`
+
+**Benefits**
+- Roles live on after users are deleted
+- Roles can be created before user accounts
+- Save DBAs time
+
+**Pitfalls**
+- Sometimes a role gives a specific user too much access. You need to pay attention
+
+### Database Partitioning
+
+When tables grow — we're talking hundreds of gigabytes or even terabytes here — queries tend to become slow. Even when we've set indices correctly, these indices can become so large they don't fit into memory. At a certain point, it can make sense to split a table up into multiple smaller parts. We call the process of doing this 'partitioning'.
+
+**Table Partitioning**
+
+There are two different types of partitioning.
+- Vertical Partitioning - Split table even when fully normalized. Splits up a table vertically by its columns
+- Horizontal Partitioning - Split the table over the rows.
   </details>
