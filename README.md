@@ -8,7 +8,7 @@ This repo contains all the datasets for my YouTube videos. Updated as more video
 
 
 <details close>
-  <summary> <b> SQL CHEATSHEET - Beginner to Advanced </b> </summary>
+  <summary> <b> SQL CheatSheet - Beginner to Advanced </b> </summary>
   <br>
   
 **Create a table**
@@ -480,3 +480,16 @@ There are two different types of partitioning.
 - Vertical Partitioning - Split table even when fully normalized. Splits up a table vertically by its columns
 - Horizontal Partitioning - Split the table over the rows.
   </details>
+
+
+<details close>
+  <summary> <b> Documenting Data Analysis Projects on GitHub </b> </summary>
+  <br>
+ GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+  - Create a repo for the project and enable ReadMe.
+  - Edit the ReadMe file and add various sections.
+  - Update the sections with details of the projects including screenshots where appropriate.
+  - Highlight the skills gained or demonsrated durign the execution of the project.
+  - Draw isight and conclusion.
+  - Upload PowerBI or excel file into the rep.
+</details>
