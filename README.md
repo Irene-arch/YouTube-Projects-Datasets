@@ -485,7 +485,8 @@ There are two different types of partitioning.
 <details close>
   <summary> <b> Documenting Data Analysis Projects on GitHub </b> </summary>
   <br>
- GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+  
+GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
   - Create a repo for the project and enable ReadMe.
   - Edit the ReadMe file and add various sections.
   - Update the sections with details of the projects including screenshots where appropriate.
