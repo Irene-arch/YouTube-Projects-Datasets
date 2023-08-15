@@ -531,6 +531,33 @@ CREATE DATABASE db_name;
 CREATE DATABASE my_db;
 CREATE DATABASE_my_db;
 ```
+
+### Schemas
+
+A schema is similar to a directory on an operating system, however, instead of containing files, the schema contains a collection of tables. In fact, schemas can also contain other database objects including data types and functions.
+
+Schemas have a number of use-cases. A primary use-case is providing a way for a database with multiple users to grant each user her own set of tables to use and manipulate without interfering with the data of other users.
+
+Another important use of schemas is to provide a way to organize components of a database. Perhaps a company has a number of very distinct business units. Schemas provide a way for the company's data to be housed in a single database while having the components of the business that are represented in the database separated from each other through the use of a number of schemas -- one for each business unit.
+
+By default, newly created tables are added to the public schema.
+
+```sql
+CREATE SCHEMA division1;
+
+CREATE TABLE division1.school (
+id serial PRIMARY KEY,
+name TEXT NOT NULL,
+mascot_name TEXT,
+num_scholarships INTEGER DEFAULT 0
+);
+```
+
+**Schema naming restrictions**
+
+- Length of name less than 32
+- Name begins with letter or underscore ("_")
+- Schema name cannot begin with "pg_" as PostgreSQL reserves names with this prefix for system-level schemas.
   </details>
 
 
