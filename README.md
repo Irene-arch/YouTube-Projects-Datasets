@@ -479,6 +479,48 @@ When tables grow — we're talking hundreds of gigabytes or even terabytes here 
 There are two different types of partitioning.
 - Vertical Partitioning - Split table even when fully normalized. Splits up a table vertically by its columns
 - Horizontal Partitioning - Split the table over the rows.
+
+```sql
+CREATE TABLE sales (
+  ...
+  timestamp DATE NOT NULL
+)
+PARTITION BY RANGE (timestamp);
+
+CREATE TABLE sales_2019_q1 PARTITION OF sales
+  FOR VALUES FROM ('2019-01-01') TO ('2019-03-31');
+...
+CREATE TABLE sales_2019_q4 PARTITION OF sales
+  FOR VALUES FROM ('2019-09-01') TO ('2019-12-31');
+CREATE INDEX ON sales ('timestamp');
+```
+
+**Pros**
+- Indices of heavily-used partitions fit in memory
+- Move to specific medium: slower vs. faster
+- Used for both OLAP as OLTP
+
+**Cons**
+- Partitioning existing table can be a hassle
+- Some constraints can not be set eg the primary key.
+
+**SQL DBMS**
+
+- Relational DataBase Management System(RDBMS)
+- Based on the relational model of data
+- Query language: SQL
+- Best option when:Data is structured and unchanging, Data must be consistent
+
+**NoSQL DBMS**
+- Less structured
+- Document-centered rather than table-centered
+- Data doesn’t have to fit into well-defined rows and columns
+- Best option when: Rapid growth, No clear schema definitions, Large quantities of data
+- Types: key-value store, document store, columnar database, graph database
+
+A key-value database stores combinations of keys and values. The key serves as a unique identifier to retrieve an associated value. Values can be anything from simple objects, like integers or strings, to more complex objects, like JSON structures. They are most frequently used for managing session information in web applications. For example, managing shopping carts for online buyers. An example DBMS is Redis.
+
+Document stores are similar to key-value in that they consist of keys, each corresponding to a value. The difference is that the stored values, referred to as documents, provide some structure and encoding of the managed data. That structure can be used to do more advanced queries on the data instead of just value retrieval. A document database is a great choice for content management applications such as blogs and video platforms. Each entity that the application tracks can be stored as a single document. An example of a document store DBMS is mongoDB.
   </details>
 
 
