@@ -521,6 +521,16 @@ CREATE INDEX ON sales ('timestamp');
 A key-value database stores combinations of keys and values. The key serves as a unique identifier to retrieve an associated value. Values can be anything from simple objects, like integers or strings, to more complex objects, like JSON structures. They are most frequently used for managing session information in web applications. For example, managing shopping carts for online buyers. An example DBMS is Redis.
 
 Document stores are similar to key-value in that they consist of keys, each corresponding to a value. The difference is that the stored values, referred to as documents, provide some structure and encoding of the managed data. That structure can be used to do more advanced queries on the data instead of just value retrieval. A document database is a great choice for content management applications such as blogs and video platforms. Each entity that the application tracks can be stored as a single document. An example of a document store DBMS is mongoDB.
+
+## CREATING POSTGERSQL DATABASES
+
+By default database names cannot be longer than 31 characters and must start with a letter or underscore. Examples of valid names.
+
+```sql
+CREATE DATABASE db_name;
+CREATE DATABASE my_db;
+CREATE DATABASE_my_db;
+```
   </details>
 
 
