@@ -330,6 +330,8 @@ Ordered from least to most normalized:
 - Sixth normal form (6NF)
 
 ### 1NF Rules
+
+The requirement of 1st Normal Form is that table values must be atomic meaning the value cannot be divided into smaller units.
 - Each record must be unique - no duplicate rows.
 - Each cell must hold one value.
 
@@ -558,6 +560,16 @@ num_scholarships INTEGER DEFAULT 0
 - Length of name less than 32
 - Name begins with letter or underscore ("_")
 - Schema name cannot begin with "pg_" as PostgreSQL reserves names with this prefix for system-level schemas.
+
+**PostgreSQL Data Types**
+
+The CHAR data type is used to represent a sequence of characters. It differs from VARCHAR in that values stored in a CHAR column do not vary in length. If a sequence is stored that is less than the fixed length, N, spaces are added to the end to ensure the string is of the expected length. Specifying a CHAR column without N defaults to a column that can only store a single character. This is the equivalent of `CHAR(1)`
+
+Precision is the total number of digits in the number before and after the decimal point. Scale is the number of digits to the right of the decimal point. DECIMAL(precision, scale) ie DECIMAL(8,2) eg 100,000.56 - the comma is not included.
+
+Boolean values can be used to represent the state of an object having one of three possible values. One possible value is a true state. The other possible value is a false state. A third possibility for a boolean column's value is a null entry that is used if the value is unknown.
+
+Temporal values are used when representing a date and/or a time related to a table record. The most complete temporal data type is the TIMESTAMP type which stores both a date and time as the column value. Other types include DATE, TIME
   </details>
 
 
