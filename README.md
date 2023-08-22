@@ -336,12 +336,18 @@ The requirement of 1st Normal Form is that table values must be atomic meaning t
 - Each cell must hold one value.
 
 ### 2NF Rules
+
+A database is in 2nd Normal Form when it satisfies 1st Normal Form and non-key columns only depend on the table's PRIMARY KEY.
 - Must satisfy 1NF AND If primary key is one column then automatically satisfies 2NF
 - If there is a composite primary key then each non-key column must be dependent on all the keys.
 
 ### 3NF Rules
+
+To satisfy 3rd Normal Form, we must first satisfy the requirements of 2nd Normal Form. 3rd Normal Form has an additional requirement that no transitive dependencies are present in the table. This means that non-key columns are solely dependent on the table PRIMARY KEY.
 - Satisfies 2NF
 - Doesn't allow transitive dependencies. This means that non-primary key columns can't depend on other non-primary key columns.
+
+Transitive dependencies are relationships within a database table that involve three columns. Imagine a table exists which has multiple columns: X, Y, and Z. Column Y is determined by column X. So, if we know the value of column X, column Y is also known. In this scenario, the same relationship structure exists between column Y and column Z. Knowing the value of column Y removes all ambiguity about the value of column Z. The transitive dependency, in this case, is between column X and column Z. Knowing the value of column X leaves no ambiguity about the value of column Z due to both columns' relationship to column Y. This is the case, even though, column X and column Z are not directly related.
 
 A database that isn't normalized enough is prone to three types of anomaly errors: update, insertion, and deletion. An update anomaly is a data inconsistency caused by data redundancy when updating. An insertion anomaly is when you're unable to add a new record due to missing attributes. The dependency between columns in the same table unintentionally restricts what can be inserted into the table. Deletion anomaly happens when you delete a record and unintentionally delete other data.
 
@@ -570,6 +576,8 @@ Precision is the total number of digits in the number before and after the decim
 Boolean values can be used to represent the state of an object having one of three possible values. One possible value is a true state. The other possible value is a false state. A third possibility for a boolean column's value is a null entry that is used if the value is unknown.
 
 Temporal values are used when representing a date and/or a time related to a table record. The most complete temporal data type is the TIMESTAMP type which stores both a date and time as the column value. Other types include DATE, TIME
+
+
   </details>
 
 
