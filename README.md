@@ -577,7 +577,39 @@ Boolean values can be used to represent the state of an object having one of thr
 
 Temporal values are used when representing a date and/or a time related to a table record. The most complete temporal data type is the TIMESTAMP type which stores both a date and time as the column value. Other types include DATE, TIME
 
+### ACCESS CONTROL IN POSTGRES
 
+Create a new user account
+- Can create tables in the database.
+- Have no access to tables created by other users.
+```sql
+CREATE USER newuseR;
+
+-- create user with password
+CREATE USER newuser WITH PASSWORD 'secret';
+
+-- change user's password
+ALTER USER newuser WITH PASSWORD 'new_password';
+```
+
+Users a a type of role. Group roles can also be defined. Superuser grants privileges.
+Use the syntax below for update, select etc
+
+```sql
+GRANT INSERT ON table TO fin;
+```
+
+Some prvileges cannot be granted, such as modifying the table. It requires ownership
+
+```sql
+ALTER TABLE tablename OWNER TO fin;
+
+-- add user to a group
+ALTER GROUP name ADD USER lopez;
+
+-- remove user from a group
+REVOKE group FROM user;
+```
   </details>
 
 
