@@ -644,8 +644,9 @@ FROM, WHERE, GROUP BY, SUM()/COUNT(), SELECT
 |------|-------|
 |FROM  |Provides direction to the table(s) if the query includes joins|
 |WHERE|Filters or limits the records|
-|
-
+|GROUP BY|Places records into categories|
+|SUM(),COUNT()|Aggregates|
+|SELECT|Identifies columns to return|
 
   </details>
 
