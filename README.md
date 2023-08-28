@@ -610,6 +610,43 @@ ALTER GROUP name ADD USER lopez;
 -- remove user from a group
 REVOKE group FROM user;
 ```
+
+### Temporary Tables
+
+- They are appealing because they provide transient storage. 
+- They are available for the duration of the database session, meaning they only temporarily tie database resources.
+- Within your database session, they are available in multiple distinct queries.
+- Temp tables are user specific, meaning they are available only to you as the creator.
+- Creating a temporary copy of a slow table is a good way to make it faster to query.
+```sql
+CREATE TEMP TABLE name AS
+
+CREATE TEMP TABLE usa_holidays AS
+SELECT holiday, holiday_type
+FROM world_holidays
+WHERE country_code = 'USA';
+
+ANALYZE usa_holidays;
+
+SELECT * FROM usa_holidays
+```
+Finally, it is good practice to add the ANALYZE function after the table creation. ANALYZE returns no visible output but helps with the query execution plan.
+
+ANALYZE calculates the records returned at different query points. It stores this information in the pg_statistics catalog. The query planner uses pg_statistics to estimate the runtime of the possible execution plans. The table statistics improve the query planner's ability to choose the optimal execution plan.
+
+In SQL, as in algebra, there is a lexical order, the order as written. This differs from the logical order, the order as executed.
+
+#### SQL Logical Order of Operations
+
+FROM, WHERE, GROUP BY, SUM()/COUNT(), SELECT
+
+|CLAUSE|PURPOSE|
+|------|-------|
+|FROM  |Provides direction to the table(s) if the query includes joins|
+|WHERE|Filters or limits the records|
+|
+
+
   </details>
 
 
@@ -621,7 +658,7 @@ GitHub is a code hosting platform for version control and collaboration. It lets
   - Create a repo for the project and enable ReadMe.
   - Edit the ReadMe file and add various sections.
   - Update the sections with details of the projects including screenshots where appropriate.
-  - Highlight the skills gained or demonsrated durign the execution of the project.
-  - Draw isight and conclusion.
+  - Highlight the skills gained or demonstrated during the execution of the project.
+  - Draw insight and conclusion.
   - Upload PowerBI or excel file into the rep.
 </details>
