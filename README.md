@@ -669,6 +669,22 @@ To save the changes, you can do inplace=True or reassign to the same dataframe e
 - Remove Duplicates - `df.drop_duplicates()`
 - Remove columns not needed - `df.drop(columns="unwanted_column")`
 - Remove unwanted characters from the string of a certain column `df["column_name"] = df["column_name"].str.strip("12._")` or left or right side of a string in a column - `df["column_name"] = df["column_name"].str.lstrip("...")` or rstrip.
-- Remove special characters from a numeric column `df["Phone Number"].str.replace('[^a-zA-0-9]','') - replace all the characters except for those in parentheses.
-  If you need to convert the values in a column to a string, use a lambada function eg `df["Phone Number"].apply(lambda x: str(x))` and then now convert the values to the format you'd like. `df["Phone Number"].apply(lambda x: x[0:3] + '-' + x[3:6] + '-' + x[6:10])`
+- Remove special characters from a numeric column `df["Phone Number"].str.replace('[^a-zA-0-9]','')` - replace all the characters except for those in parentheses.
+  If you need to convert the values in a column to a string, use a lambada function eg `df["Phone Number"].apply(lambda x: str(x))` and then now convert the values to the format you'd like.
+
+`df["Phone Number"].apply(lambda x: x[0:3] + '-' + x[3:6] + '-' + x[6:10])`
+
+- Split a column
+
+  `df[["col_1", "col_2", "col_3"]] = df["Address"].str.split(",",2,expand=True)`
+- Replace values represented as NaN with nothing/blanks - `df=df.fillna('')`
+- The `df.index` is actually the numbering that is usually at the left of the dataframe after its been displayed.
+  ```python
+  for x in df.index:
+    if df.loc[x, "col_name"] == 'Y':
+      df.drop(x, inplace=True)
+  ```
+
+  Or you could do `df=df.dropna(subset="col_name"),inplace=True)`
+- To reset the index - `df.reset_index(drop=True)`
 </details>
