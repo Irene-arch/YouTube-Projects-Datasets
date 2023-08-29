@@ -662,4 +662,13 @@ GitHub is a code hosting platform for version control and collaboration. It lets
   - Highlight the skills gained or demonstrated during the execution of the project.
   - Draw insight and conclusion.
   - Upload PowerBI or excel file into the rep.
+
+## Data Cleaning in Python
+
+To save the changes, you can do inplace=True or reassign to the same dataframe eg df = df.drop_duplicates() or to save changes to a column eg df["col_name"]= df["col_name"].somefunction
+- Remove Duplicates - `df.drop_duplicates()`
+- Remove columns not needed - `df.drop(columns="unwanted_column")`
+- Remove unwanted characters from the string of a certain column `df["column_name"] = df["column_name"].str.strip("12._")` or left or right side of a string in a column - `df["column_name"] = df["column_name"].str.lstrip("...")` or rstrip.
+- Remove special characters from a numeric column `df["Phone Number"].str.replace('[^a-zA-0-9]','') - replace all the characters except for those in parentheses.
+  If you need to convert the values in a column to a string, use a lambada function eg `df["Phone Number"].apply(lambda x: str(x))` and then now convert the values to the format you'd like. `df["Phone Number"].apply(lambda x: x[0:3] + '-' + x[3:6] + '-' + x[6:10])`
 </details>
