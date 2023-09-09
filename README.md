@@ -6,15 +6,6 @@ This repo contains all the datasets for my YouTube videos. Updated as more video
 3. **Data Cleaning in Python (FIFA21)** - [YouTube](https://youtu.be/7mYbrpfAU6k) | [Dataset Link](https://github.com/Irene-arch/YouTube-Projects-Datasets/blob/main/fifa21%20raw%20data%20v2.csv)
 4. **Customer Behaviour Analysis Using SQL** - [YouTube](https://youtu.be/lHR1_j8DYFA) | [Dataset Link](https://github.com/Irene-arch/YouTube-Projects-Datasets/blob/main/Dannys%20Diner%20Template.sql)
 
-## Table of Contents
-
-- [YouTube Projects Datasets](#youtube-projects-datasets)
-  - Project 1
-  - Project 2
-- [Intro](#intro)
-- [Data Stuff](#data-stuff)
-- [Analysis](#analysis)
-
 <details close>
   <summary> <b> SQL CheatSheet - Beginner to Advanced </b> </summary>
   <br>
