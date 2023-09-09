@@ -9,6 +9,8 @@ This repo contains all the datasets for my YouTube videos. Updated as more video
 ## Table of Contents
 
 - [YouTube Projects Datasets](#youtube-projects-datasets)
+  - Project 1
+  - Project 2
 - [Intro](#intro)
 - [Data Stuff](#data-stuff)
 - [Analysis](#analysis)
