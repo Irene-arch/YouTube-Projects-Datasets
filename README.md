@@ -687,9 +687,3 @@ To save the changes, you can do inplace=True or reassign to the same dataframe e
   Or you could do `df=df.dropna(subset="col_name"),inplace=True)`
 - To reset the index - `df.reset_index(drop=True)`
 </details>
-
-# Intro
-
-# Data Stuff
-
-# Analysis
